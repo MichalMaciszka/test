@@ -4,28 +4,24 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo Building'
-//                 echo 'Building..'
+                echo "Building ${env.BUILD_ID} on ${env.JENKINS_URL}"
                 sh 'mvn clean build'
             }
         }
         stage('Test') {
             steps {
-                sh 'echo Testing...'
-//                 echo 'Testing..'
+                echo "Executor number: ${env.EXECUTOR_MUBER}"
                 sh 'mvn clean test'
             }
         }
         stage('Deploy') {
             when {
                 expression {
-                    sh 'echo Expression...'
                     currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
             steps {
-//                 echo 'Deploying....'
-                sh 'echo Deploying...'
+                echo "JAVA_HOME: ${env.JAVA_HOME}"
                 sh 'mvn clean install'
             }
         }
