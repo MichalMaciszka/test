@@ -9,14 +9,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Building ${env.BUILD_ID} on ${env.JENKINS_URL}"
-                sh 'mvn clean build'
+                echo "Building..."
+                sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Test') {
+        stage('Test') { 
             steps {
-                echo "Executor number: ${env.EXECUTOR_MUBER}"
-                sh 'mvn clean test'
+                echo "Testing..."
+                sh 'mvn test' 
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml' 
+                }
             }
         }
         stage('Deploy') {
