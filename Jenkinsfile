@@ -4,24 +4,28 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh 'echo Building'
+//                 echo 'Building..'
                 sh 'mvn clean build'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                sh 'echo Testing...'
+//                 echo 'Testing..'
                 sh 'mvn clean test'
             }
         }
         stage('Deploy') {
             when {
                 expression {
+                    sh 'echo Expression...'
                     currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
             steps {
-                echo 'Deploying....'
+//                 echo 'Deploying....'
+                sh 'echo Deploying...'
                 sh 'mvn clean install'
             }
         }
