@@ -30,8 +30,8 @@ pipeline {
                 }
             }
             steps {
-                echo "JAVA_HOME: ${env.JAVA_HOME}"
-                sh 'mvn clean install'
+                echo "Deploying..."
+                sh 'mvn clean install -DskipTests'
             }
         }
     }
