@@ -25,6 +25,7 @@ pipeline {
                     archiveArtifacts artifacts: '**/target/surefire-reports/*.xml', fingerprint: true
                     junit(
                         allowEmptyResults: true,
+                        skipPublishingChecks: true,
                         testResults: '**/target/surefire-reports/*.xml'
                     )
                 }
