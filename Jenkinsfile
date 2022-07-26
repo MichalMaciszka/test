@@ -22,10 +22,10 @@ pipeline {
             }
             post {
                 always {
-                    archiveArtifacts artifacts: '/var/jenkins_home/workspace/test/target/surefire-reports', fingerprint: true
+                    archiveArtifacts artifacts: '/var/jenkins_home/workspace/test/target/surefire-reports/*.xml', fingerprint: true
                     junit(
                         allowEmptyResults: true,
-                        testResults: '/var/jenkins_home/workspace/test/target/surefire-reports'
+                        testResults: '/var/jenkins_home/workspace/test/target/surefire-reports/*.xml'
                     )
                 }
             }
