@@ -22,10 +22,10 @@ pipeline {
             }
             post {
                 always {
-                    archiveArtifacts artifacts: './target/surefire-reports/*.xml', fingerprint: true
+                    archiveArtifacts artifacts: '**/target/surefire-reports/*.xml', fingerprint: true
                     junit(
                         allowEmptyResults: true,
-                        testResults: './target/surefire-reports/*.xml'
+                        testResults: '**/target/surefire-reports/*.xml'
                     )
                 }
             }
