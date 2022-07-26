@@ -4,6 +4,9 @@ pipeline {
             image 'maven:3.8.6-openjdk-18'
         }
     }
+    options {
+        skipStagesAfterUnstable()
+    }
 
     stages {
         stage('Build') {
@@ -24,11 +27,6 @@ pipeline {
             }
         }
         stage('Deploy') {
-            when {
-                expression {
-                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
-                }
-            }
             steps {
                 echo "Deploying..."
                 sh 'mvn clean install -DskipTests'
