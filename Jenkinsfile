@@ -27,8 +27,6 @@ pipeline {
                         allowEmptyResults: true,
                         testResults: '**/target/surefire-reports/*.xml'
                     )
-                    sh 'cat **/target/surefire-reports/*.xml'
-//                     junit '**/target/surefire-reports/*.xml' 
                 }
             }
         }
