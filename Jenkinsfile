@@ -1,5 +1,3 @@
-def json = readJSON file: 'input.json'
-
 pipeline {
     agent {
         docker {
@@ -9,6 +7,7 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
+    def json = readJSON file: 'input.json'
 
     stages {
         stage('Build') {
