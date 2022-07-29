@@ -14,8 +14,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building..."
-                echo 'first value from json = ${json['ticker']}'
-                echo 'second value from json = ${json['amount']}'
+                echo "first value from json = ${json['ticker']}"
+                echo "second value from json = ${json['amount']}"
                 sh 'mvn -B -DskipTests clean package'
             }
         }
