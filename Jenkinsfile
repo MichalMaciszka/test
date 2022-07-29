@@ -41,6 +41,9 @@ pipeline {
             }
         }
         stage('Deploy') {
+            when {
+                branch 'master'
+            }
             steps {
                 echo "Deploying..."
                 sh 'mvn clean install -DskipTests'
