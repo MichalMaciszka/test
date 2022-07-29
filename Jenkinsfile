@@ -31,7 +31,7 @@ pipeline {
                 }
                 failure {
                     mail bcc: '',
-                        body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '',
+                        body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL to build: ${env.BUILD_URL}", cc: '',
                         charset: 'UTF-8',
                         from: 't-ja15@wp.pl',
                         mimeType: 'text/html', replyTo: '',
