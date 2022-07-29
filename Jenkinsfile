@@ -4,9 +4,6 @@ pipeline {
             image 'maven:3.8.6-openjdk-18'
         }
     }
-//     triggers {
-//         cron('*/2 * * * *')
-//     }
     options {
         skipStagesAfterUnstable()
     }
@@ -15,6 +12,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building..."
+                script {
+                    def json = readJSON file: 'input.json'
+                    echo "first value from json = ${json['ticker']}"
+                    echo "second value from json = ${json['amount']}"
+                }
                 sh 'mvn -B -DskipTests clean package'
             }
         }
@@ -34,7 +36,8 @@ pipeline {
                 }
                 failure {
                     mail bcc: '',
-                        body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL to build: ${env.BUILD_URL}", cc: '',
+                        body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL to build: ${env.BUILD_URL}",
+                        cc: '',
                         charset: 'UTF-8',
                         from: 't-ja15@wp.pl',
                         mimeType: 'text/html', replyTo: '',
