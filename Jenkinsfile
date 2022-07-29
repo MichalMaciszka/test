@@ -1,3 +1,5 @@
+def json = readJSON file: 'input.json'
+
 pipeline {
     agent {
         docker {
@@ -12,6 +14,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building..."
+                echo 'first value from json = ${json['ticker']}'
+                echo 'second value from json = ${json['amount']}'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
