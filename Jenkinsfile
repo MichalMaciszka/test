@@ -7,14 +7,16 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
-    def json = readJSON file: 'input.json'
 
     stages {
         stage('Build') {
             steps {
                 echo "Building..."
-                echo "first value from json = ${json['ticker']}"
-                echo "second value from json = ${json['amount']}"
+                script {
+                    def json = readJSON file: 'input.json'
+                    echo "first value from json = ${json['ticker']}"
+                    echo "second value from json = ${json['amount']}"
+                }
                 sh 'mvn -B -DskipTests clean package'
             }
         }
