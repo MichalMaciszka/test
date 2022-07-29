@@ -4,9 +4,9 @@ pipeline {
             image 'maven:3.8.6-openjdk-18'
         }
     }
-    triggers {
+//     triggers {
 //         cron('*/2 * * * *')
-    }
+//     }
     options {
         skipStagesAfterUnstable()
     }
