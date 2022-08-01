@@ -12,11 +12,16 @@ pipeline {
     triggers {
         cron('*/5 * * * *')
     }
+    
+    parameters {
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+    }
 
     stages {
         stage('Build') {
             steps {
                 echo "Building..."
+                echo "Hello ${params.PERSON}"
                 script {
                     def json = readJSON file: 'input.json'
                     echo "first value from json = ${json['ticker']}"
